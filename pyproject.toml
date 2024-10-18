@@ -1,0 +1,53 @@
+[tool.poetry]
+name = "hypermodern-pc"
+version = "0.1.0"
+description = "The Hypermodern Python (PC) Project"
+authors = ["Paul Conway <paulc00@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/paulc00/hypermodern-pc"
+repository = "https://github.com/paulc00/hypermodern-pc"
+keywords = ["hypermodern"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+click = "^8.1.7"
+requests = "^2.32.3"
+types-requests = "^2.32.0.20241016"
+desert = "^2022.9.22"
+marshmallow = "^3.23.0"
+
+[tool.poetry.scripts]
+hypermodern-pc = "hypermodern_pc.console:main"
+
+[tool.coverage.paths]
+source = ["src", "*/site-packages"]
+
+[tool.coverage.run]
+branch = true
+source = ["hypermodern_pc"]
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+coverage = {extras = ["toml"], version = "^7.6.3"}
+pytest-cov = "^5.0.0"
+pytest-mock = "^3.14.0"
+black = "^24.10.0"
+flake8 = "^7.1.1"
+flake8-bandit = "^4.1.1"
+flake8-black = "^0.3.6"
+flake8-bugbear = "^24.8.19"
+flake8-import-order = "^0.18.2"
+safety = "^3.2.8"
+mypy = "^1.12.0"
+types-requests = "^2.32.0.20241016"
+pytype = {version = "^2024.10.11", python = "3.7"}
+typeguard = "^4.3.0"
+flake8-annotations = "^3.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
