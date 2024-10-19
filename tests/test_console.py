@@ -1,3 +1,5 @@
+"""Tests for console."""
+
 from unittest.mock import Mock
 
 from click.testing import CliRunner
@@ -10,11 +12,13 @@ from hypermodern_pc import console
 
 @pytest.fixture
 def runner() -> CliRunner:
+    """Fixture to return a CliRunner."""
     return CliRunner()
 
 
 @pytest.fixture
 def mock_requests_get(mocker: MockFixture) -> Mock:
+    """Mockup for requests.get."""
     mock = mocker.patch("requests.get")
     mock.return_value.__enter__.return_value.json.return_value = {
         "title": "Lorem Ipsum",
@@ -24,6 +28,7 @@ def mock_requests_get(mocker: MockFixture) -> Mock:
 
 
 def test_main_succeeds(runner: CliRunner, mock_requests_get: Mock) -> None:
+    """It exits with a status code of zero."""
     result = runner.invoke(console.main)
     assert result.exit_code == 0
 
@@ -59,6 +64,7 @@ def test_main_fails_on_request_error(
 def test_main_prints_message_on_request_error(
     runner: CliRunner, mock_requests_get: Mock
 ) -> None:
+    """It displays an error message if the request fails."""
     mock_requests_get.side_effect = requests.RequestException
     result = runner.invoke(console.main)
     assert "Error" in result.output
@@ -66,17 +72,20 @@ def test_main_prints_message_on_request_error(
 
 @pytest.fixture
 def mock_wikipedia_random_page(mocker: MockFixture) -> Mock:
+    """Mockup for returning a random wikipedia page."""
     return mocker.patch("hypermodern_pc.wikipedia.random_page")
 
 
 def test_main_uses_specified_language(
     runner: CliRunner, mock_wikipedia_random_page: Mock
 ) -> None:
+    """It uses the language provided in the call."""
     runner.invoke(console.main, ["--language=pl"])
     mock_wikipedia_random_page.assert_called_with(language="pl")
 
 
 @pytest.mark.e2e
 def test_main_succeeds_in_production_env(runner: CliRunner) -> None:
+    """Tests OK in production."""
     result = runner.invoke(console.main)
     assert result.exit_code == 0
