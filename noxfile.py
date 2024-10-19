@@ -9,7 +9,7 @@ locations = "src", "tests", "./noxfile.py", "./docs/conf.py"
 nox.options.sessions = "lint", "mypy", "tests", "black"
 
 
-@nox.session(python=["3.8", "3.11"])
+@nox.session(python="3.11")
 def lint(session: Session) -> None:
     """Lint using flake8."""
     args = session.posargs or locations
@@ -27,7 +27,7 @@ def lint(session: Session) -> None:
     session.run("flake8", *args)
 
 
-@nox.session(python=["3.8", "3.11"])
+@nox.session(python="3.11")
 def tests(session: Session) -> None:
     """Run the test suite."""
     args = session.posargs or ["--cov", "-m", "not e2e"]
@@ -81,7 +81,7 @@ def install_with_constraints(session: Session, *args: str, **kwargs: int) -> Non
         session.install(f"--constraint={requirements.name}", *args, **kwargs)
 
 
-@nox.session(python=["3.8", "3.11"])
+@nox.session(python="3.11")
 def mypy(session: Session) -> None:
     """Type-check using mypy."""
     args = session.posargs or locations
@@ -92,7 +92,7 @@ def mypy(session: Session) -> None:
 package = "hypermodern_pc"
 
 
-@nox.session(python=["3.8", "3.11"])
+@nox.session(python="3.11")
 def typeguard(session: Session) -> None:
     """Runtime type checking using Typeguard."""
     args = session.posargs or ["-m", "not e2e"]
@@ -101,7 +101,7 @@ def typeguard(session: Session) -> None:
     session.run("pytest", f"--typeguard-packages={package}", *args)
 
 
-@nox.session(python=["3.8", "3.11"])
+@nox.session(python="3.11")
 def xdoctest(session: Session) -> None:
     """Run examples with xdoctest."""
     args = session.posargs or ["all"]
