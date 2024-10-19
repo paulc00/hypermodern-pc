@@ -16,4 +16,6 @@ jobs:
     - run: pip install nox==2024.10.9
     - run: pip install poetry==1.8.4
     - run: poetry config warnings.export false
-    - run: nox
+    - run: nox --sessions tests-3.11 coverage
+      env:
+        CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
