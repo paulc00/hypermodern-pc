@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hypermodern-pc"
-version = "0.1.0"
+version = "0.1.1"
 description = "The Hypermodern Python (PC) Project"
 authors = ["Paul Conway <paulc00@gmail.com>"]
 license = "MIT"
