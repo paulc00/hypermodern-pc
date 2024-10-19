@@ -32,8 +32,8 @@ def random_page(language: str = "en") -> Page:
     Performs a GET request to the /page/random/summary endpoint.
 
     Args:
-        language: The Wikipedia language edition. By default, the
-            English Wikipedia is used ("en").
+        language: The Wikipedia language edition. The English
+            Wikipedia is used ("en") by default.
 
     Returns:
         A page resource.
