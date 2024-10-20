@@ -7,6 +7,7 @@ license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/paulc00/hypermodern-pc"
 repository = "https://github.com/paulc00/hypermodern-pc"
+documentation = "https://hypermodern-pc.readthedocs.io"
 keywords = ["hypermodern"]
 
 [tool.poetry.dependencies]
